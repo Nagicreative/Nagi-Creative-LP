@@ -1,0 +1,117 @@
+/* ─── design tokens ─── */
+:root {
+  --bg:       #EFE6D6;
+  --bg-2:     #E6DBC6;
+  --paper:    #F5EDDE;
+  --ink:      #1F2A37;
+  --ink-2:    #4A5462;
+  --muted:    #8E8474;
+  --rule:     rgba(31,42,55,.14);
+  --hair:     rgba(31,42,55,.08);
+  --navy:     #21364A;
+  --navy-hov: #2E4866;
+  --accent:   #B89464;
+  --script:   #21364A;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { font-size: 15px; line-height: 1.6; font-weight: 400; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--navy); color: var(--paper); }
+
+/* ─── typography utilities ─── */
+.serif  { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+.script { font-family: 'Pinyon Script', cursive; font-weight: 400; color: var(--script); }
+.cap    {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+/* ─── layout ─── */
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (min-width: 780px) { .wrap { padding: 0 56px; } }
+
+/* ─── buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: transform .3s ease, background .3s ease, color .3s ease,
+              border-color .3s ease, box-shadow .3s ease;
+}
+.btnPrimary {
+  background: var(--navy);
+  color: var(--paper);
+  box-shadow: 0 8px 24px -10px rgba(33,54,74,.5);
+}
+.btnPrimary:hover {
+  background: var(--navy-hov);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px -10px rgba(33,54,74,.55);
+}
+.icoArrow {
+  display: inline-flex;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.btn:hover .icoArrow,
+.btnLink:hover .icoArrow { transform: translateX(4px); }
+
+/* ─── scroll reveal ───
+   Hidden only once JS marks the page ready, so the site stays fully
+   visible if JS is disabled or fails. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.reveal-ready [data-reveal].reveal-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal].reveal-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+.btnLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+}

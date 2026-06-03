@@ -1,0 +1,165 @@
+/* ── Section ─────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 920px;
+  overflow: hidden;
+}
+@media (min-width: 980px) { .hero { min-height: 1020px; } }
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(240,230,210,.55) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroTint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(240,230,210,.75) 0%,
+    rgba(240,230,210,.45) 30%,
+    rgba(240,230,210,.08) 55%,
+    transparent 70%
+  );
+}
+
+/* ── LP overlay on video laptop ──────────────── */
+.laptopOverlay {
+  position: absolute;
+  /* tune these to align with the laptop screen in your video */
+  left: 51%;
+  top: 68%;
+  width: 15%;
+  z-index: 2;
+  pointer-events: none;
+  /* match the slight backward tilt of the open laptop lid */
+  transform: perspective(600px) rotateX(7deg) rotateY(-4deg);
+  transform-origin: center top;
+}
+
+.laptopScreen {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+/* Screen-on animation */
+.screenDark {
+  position: absolute;
+  inset: 0;
+  background: #060608;
+  pointer-events: none;
+  transition: opacity 2.2s cubic-bezier(.4,0,.2,1);
+}
+.screenOn { opacity: 0; }
+
+/* ── Watermark cover ─────────────────────────── */
+.wmCover {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 260px;
+  height: 90px;
+  background: radial-gradient(
+    ellipse at 100% 100%,
+    rgba(204, 178, 138, 0.92) 0%,
+    rgba(204, 178, 138, 0.6) 30%,
+    transparent 70%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Wrap / copy ─────────────────────────────── */
+.wrap {
+  position: relative;
+  z-index: 3;
+  padding-top: 210px;
+  padding-bottom: 140px;
+}
+@media (min-width: 980px) {
+  .wrap { padding-top: 250px; padding-bottom: 170px; }
+}
+
+.heroCopy {
+  max-width: 560px;
+}
+
+/* entrance: copy rises in on load */
+.heroCopy > * {
+  animation: heroRise .9s cubic-bezier(.2,.7,.2,1) both;
+}
+.heroCopy > *:nth-child(1) { animation-delay: .15s; }
+.heroCopy > *:nth-child(2) { animation-delay: .28s; }
+.heroCopy > *:nth-child(3) { animation-delay: .41s; }
+.heroCopy > *:nth-child(4) { animation-delay: .54s; }
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroCopy > * { animation: none; }
+}
+
+.h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(40px, 4.6vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.scriptline {
+  display: block;
+  font-family: 'Pinyon Script', cursive;
+  color: var(--script);
+  font-size: clamp(52px, 5.6vw, 80px);
+  line-height: 1.2;
+  margin: -.04em 0 28px -.04em;
+  padding-bottom: .3em;
+}
+
+.heroLede {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 36ch;
+  margin: 0 0 36px;
+}
+
+.heroCta {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Wave ────────────────────────────────────── */
+.wave {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  display: block;
+  width: 100%;
+  height: 96px;
+  z-index: 4;
+}

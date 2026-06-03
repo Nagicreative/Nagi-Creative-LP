@@ -1,0 +1,130 @@
+.sec {
+  padding-top: 0;
+  padding-bottom: 120px;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+}
+
+.wrapInner { position: relative; z-index: 5; }
+
+.secLabel {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  position: relative;
+}
+
+@media (min-width: 780px) {
+  .workGrid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+}
+
+.workCard {
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 14px 14px 24px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 24px 50px -30px rgba(33,54,74,.22);
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease;
+  display: block;
+}
+
+.workCard:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 40px 70px -30px rgba(33,54,74,.35);
+}
+
+.lifted { transform: translateY(-12px); }
+.lifted:hover { transform: translateY(-20px); }
+
+.photo {
+  aspect-ratio: 5/4;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+}
+
+.workCard:hover .photo img { transform: scale(1.05); }
+
+.name {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 0 12px;
+  margin: 0 0 8px;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--ink-2);
+  padding: 0 12px;
+  margin: 0 0 18px;
+}
+
+.vp {
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.icoArrow {
+  display: inline-flex;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+
+.workCard:hover .icoArrow { transform: translateX(4px); }
+
+.secPlant {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+  object-fit: contain;
+  right: -40px;
+  bottom: -120px;
+  width: 480px;
+  height: 720px;
+  transform-origin: bottom center;
+  animation: plantSway 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.sec:hover .secPlant {
+  animation-duration: 4.5s;
+}
+
+@keyframes plantSway {
+  0%, 100% { transform: rotate(0deg) translateX(0px); }
+  30%       { transform: rotate(-1.6deg) translateX(-5px); }
+  65%       { transform: rotate(1.1deg) translateX(3px); }
+}
+
+@media (max-width: 880px) { .secPlant { display: none; } }

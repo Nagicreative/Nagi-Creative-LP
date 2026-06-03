@@ -1,0 +1,97 @@
+.ft {
+  background: var(--paper);
+  border-top: 1px solid var(--hair);
+  padding: 96px 0 48px;
+}
+
+.ftMain {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: start;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--hair);
+}
+
+@media (min-width: 780px) {
+  .ftMain { grid-template-columns: 1.4fr 1fr; gap: 80px; }
+}
+
+.ftBrandLg {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.ftMotto {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 40ch;
+}
+
+.ftBrand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ftTagline {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin: 0 0 20px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+
+.contactRow svg { flex: 0 0 14px; color: var(--accent); }
+
+.ftFollow { margin-top: 20px; }
+.ftFollow :global(.cap) { display: block; margin-bottom: 12px; }
+
+.socials { display: flex; gap: 10px; }
+
+.socialLink {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  transition: all .25s ease;
+}
+
+.socialLink:hover {
+  background: var(--navy);
+  color: var(--paper);
+  border-color: var(--navy);
+}
+
+.ftFine {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
