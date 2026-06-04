@@ -5,7 +5,7 @@
 
 The marketing site for **Nagi Creative** — a boutique web design studio for cafés,
 stays and small hospitality brands on the Gold Coast (QLD, Australia) and in Japan.
-Founded by Kyoka Nakayama (中山京花). Bilingual EN / 日本語.
+Founded by Kyoka Nakayama (中山京香). Bilingual EN / 日本語.
 
 ---
 
