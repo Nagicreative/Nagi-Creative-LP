@@ -1,8 +1,8 @@
 import ArrowIcon from './ArrowIcon'
 import styles from './FeaturedProjects.module.css'
 
-// TODO: replace with your deployed Palm & Salt URL (e.g. https://palm-and-salt.vercel.app)
-const PALM_SALT_URL = 'https://palm-and-salt.vercel.app'
+// Palm & Salt — live demo (Netlify)
+const PALM_SALT_URL = 'https://palm-and-salt.netlify.app'
 
 const projects = [
   {
