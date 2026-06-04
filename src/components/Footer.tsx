@@ -6,7 +6,11 @@ export default function Footer() {
       <div className="wrap">
         <div className={styles.ftMain}>
           <div className={styles.ftLead} data-reveal>
-            <div className={styles.ftBrandLg}>Nagi Creative</div>
+            <img
+              src="/logo-rectangle.png"
+              alt="Nagi Creative"
+              className={styles.ftLogoImg}
+            />
             <p className={styles.ftMotto}>
               We tune the atmosphere of small brands into a world worth choosing.
             </p>

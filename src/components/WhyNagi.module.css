@@ -85,20 +85,32 @@
   width: 400px;
   height: 620px;
   transform-origin: bottom center;
-  animation: plantSway 10s ease-in-out infinite;
-  /* offset phase so left & right plants don't sway in sync */
-  animation-delay: -3s;
+  /* idle: phase offset so it's out of sync with right plant */
+  animation: plantIdleLeft 16s ease-in-out infinite;
+  animation-delay: -5s;
   will-change: transform;
 }
 
 .why:hover .secPlant {
-  animation-duration: 5s;
+  animation: plantGustLeft 6s ease-in-out infinite;
 }
 
-@keyframes plantSway {
-  0%, 100% { transform: rotate(0deg) translateX(0px); }
-  30%       { transform: rotate(1.4deg) translateX(4px); }
-  65%       { transform: rotate(-1deg) translateX(-3px); }
+@keyframes plantIdleLeft {
+  0%, 100% { transform: rotate(0deg); }
+  40%       { transform: rotate(0.4deg); }
+  72%       { transform: rotate(-0.3deg); }
+}
+
+@keyframes plantGustLeft {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(2.2deg); }
+  23%  { transform: rotate(-0.8deg); }
+  36%  { transform: rotate(1.5deg); }
+  50%  { transform: rotate(-0.5deg); }
+  63%  { transform: rotate(1deg); }
+  76%  { transform: rotate(-0.3deg); }
+  88%  { transform: rotate(0.4deg); }
+  100% { transform: rotate(0deg); }
 }
 
 @media (max-width: 880px) { .secPlant { display: none; } }

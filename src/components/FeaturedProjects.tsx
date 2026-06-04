@@ -1,13 +1,17 @@
 import ArrowIcon from './ArrowIcon'
 import styles from './FeaturedProjects.module.css'
 
+// TODO: replace with your deployed Palm & Salt URL (e.g. https://palm-and-salt.vercel.app)
+const PALM_SALT_URL = 'https://palm-and-salt.vercel.app'
+
 const projects = [
   {
-    href: '#',
-    img: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80&auto=format&fit=crop',
-    alt: 'Boutique hotel pool',
-    name: 'Casa Solana',
-    meta: 'Boutique Hotel · Byron Bay',
+    href: PALM_SALT_URL,
+    external: true,
+    img: '/palm-salt.jpg',
+    alt: 'Palm & Salt — Gold Coast beachfront café landing page',
+    name: 'Palm & Salt',
+    meta: 'Beachfront Café · Gold Coast',
     lifted: false,
   },
   {
@@ -17,6 +21,7 @@ const projects = [
     name: 'Villa Lumière',
     meta: 'Luxury Stay · Noosa Heads',
     lifted: true,
+    external: false,
   },
   {
     href: '#',
@@ -25,6 +30,7 @@ const projects = [
     name: 'The Cove Stay',
     meta: 'Beachfront Stay · Palm Beach',
     lifted: false,
+    external: false,
   },
 ]
 
@@ -34,11 +40,15 @@ export default function FeaturedProjects() {
       <div className={`wrap ${styles.wrapInner}`}>
         <div className={styles.secLabel} data-reveal><span className="cap">Featured projects</span></div>
         <div className={styles.workGrid}>
-          {projects.map((p) => (
+          {projects.map((p, i) => (
             <a
               key={p.name}
               className={`${styles.workCard} ${p.lifted ? styles.lifted : ''}`}
               href={p.href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              data-reveal
+              style={{ transitionDelay: `${i * 0.13}s` }}
             >
               <div className={styles.photo}>
                 <img src={p.img} alt={p.alt} loading="lazy" />

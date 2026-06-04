@@ -17,13 +17,12 @@
   .ftMain { grid-template-columns: 1.4fr 1fr; gap: 80px; }
 }
 
-.ftBrandLg {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: clamp(30px, 3.4vw, 46px);
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 18px;
+.ftLogoImg {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 22px;
 }
 
 .ftMotto {

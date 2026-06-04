@@ -1,15 +1,7 @@
-import { useEffect, useState } from 'react'
 import ArrowIcon from './ArrowIcon'
 import styles from './Hero.module.css'
 
 export default function Hero() {
-  const [screenOn, setScreenOn] = useState(false)
-
-  useEffect(() => {
-    const t = setTimeout(() => setScreenOn(true), 900)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
     <section className={styles.hero} id="top">
       <video className={styles.heroBg} autoPlay muted loop playsInline preload="auto">
@@ -17,15 +9,6 @@ export default function Hero() {
         <img src="/hero-section.png" alt="" />
       </video>
       <div className={styles.heroTint} />
-
-      {/* LP overlay on the laptop visible in the video */}
-      <div className={styles.laptopOverlay}>
-        <img src="/LP pc Nagi.png" alt="" className={styles.laptopScreen} />
-        <div className={`${styles.screenDark} ${screenOn ? styles.screenOn : ''}`} />
-      </div>
-
-      {/* Watermark cover – blends with bottom-right of video */}
-      <div className={styles.wmCover} />
 
       <div className={`wrap ${styles.wrap}`}>
         <div className={styles.heroCopy}>
@@ -48,6 +31,15 @@ export default function Hero() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className={styles.scrollHint} aria-hidden="true">
+        <svg viewBox="0 0 20 28" width="20" height="28" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="6" y="1" width="8" height="14" rx="4"/>
+          <circle cx="10" cy="5" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M10 21l-3 3 3 3 3-3-3-3z"/>
+        </svg>
       </div>
 
       <svg

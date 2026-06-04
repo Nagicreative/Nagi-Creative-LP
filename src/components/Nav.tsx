@@ -33,8 +33,8 @@ export default function Nav() {
           />
         </a>
         <nav className={styles.navLinks}>
-          <a href="#work" onClick={(e) => handleAnchorClick(e, '#work')}>Work</a>
           <a href="#services" onClick={(e) => handleAnchorClick(e, '#services')}>Services</a>
+          <a href="#work" onClick={(e) => handleAnchorClick(e, '#work')}>Work</a>
           <a href="#process" onClick={(e) => handleAnchorClick(e, '#process')}>Process</a>
           <a href="#pricing" onClick={(e) => handleAnchorClick(e, '#pricing')}>Pricing</a>
           <a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')}>Contact</a>

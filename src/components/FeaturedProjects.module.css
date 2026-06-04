@@ -113,18 +113,33 @@
   width: 480px;
   height: 720px;
   transform-origin: bottom center;
-  animation: plantSway 9s ease-in-out infinite;
+  /* idle: barely noticeable micro-sway */
+  animation: plantIdle 14s ease-in-out infinite;
   will-change: transform;
 }
 
+/* hover: real gust — damping oscillation */
 .sec:hover .secPlant {
-  animation-duration: 4.5s;
+  animation: plantGust 5.5s ease-in-out infinite;
 }
 
-@keyframes plantSway {
-  0%, 100% { transform: rotate(0deg) translateX(0px); }
-  30%       { transform: rotate(-1.6deg) translateX(-5px); }
-  65%       { transform: rotate(1.1deg) translateX(3px); }
+@keyframes plantIdle {
+  0%, 100% { transform: rotate(0deg); }
+  35%       { transform: rotate(-0.5deg); }
+  70%       { transform: rotate(0.3deg); }
+}
+
+@keyframes plantGust {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(-2.4deg); }
+  22%  { transform: rotate(0.9deg); }
+  34%  { transform: rotate(-1.7deg); }
+  47%  { transform: rotate(0.6deg); }
+  59%  { transform: rotate(-1.1deg); }
+  71%  { transform: rotate(0.3deg); }
+  83%  { transform: rotate(-0.5deg); }
+  93%  { transform: rotate(0.1deg); }
+  100% { transform: rotate(0deg); }
 }
 
 @media (max-width: 880px) { .secPlant { display: none; } }

@@ -8,8 +8,11 @@
 
 .heroBg {
   position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
+  top: 0; left: 0; right: 0;
+  /* extend below container — overflow:hidden clips the watermark */
+  bottom: -130px;
+  width: 100%;
+  height: calc(100% + 130px);
   object-fit: cover;
   object-position: center 30%;
   z-index: 0;
@@ -38,53 +41,22 @@
   );
 }
 
-/* ── LP overlay on video laptop ──────────────── */
-.laptopOverlay {
+/* ── Watermark cover — fades bottom of video into the wave ── */
+.hero::after {
+  content: '';
   position: absolute;
-  /* tune these to align with the laptop screen in your video */
-  left: 51%;
-  top: 68%;
-  width: 15%;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
+  background: linear-gradient(
+    to top,
+    rgba(239,230,214,1) 0%,
+    rgba(239,230,214,.85) 20%,
+    transparent 100%
+  );
   z-index: 2;
   pointer-events: none;
-  /* match the slight backward tilt of the open laptop lid */
-  transform: perspective(600px) rotateX(7deg) rotateY(-4deg);
-  transform-origin: center top;
 }
 
-.laptopScreen {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 2px;
-}
-
-/* Screen-on animation */
-.screenDark {
-  position: absolute;
-  inset: 0;
-  background: #060608;
-  pointer-events: none;
-  transition: opacity 2.2s cubic-bezier(.4,0,.2,1);
-}
-.screenOn { opacity: 0; }
-
-/* ── Watermark cover ─────────────────────────── */
-.wmCover {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 260px;
-  height: 90px;
-  background: radial-gradient(
-    ellipse at 100% 100%,
-    rgba(204, 178, 138, 0.92) 0%,
-    rgba(204, 178, 138, 0.6) 30%,
-    transparent 70%
-  );
-  z-index: 3;
-  pointer-events: none;
-}
 
 /* ── Wrap / copy ─────────────────────────────── */
 .wrap {
@@ -152,6 +124,27 @@
   gap: 22px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* ── Scroll hint ─────────────────────────────── */
+.scrollHint {
+  position: absolute;
+  bottom: 112px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: var(--ink);
+  opacity: 0.35;
+  animation: scrollBounce 2.4s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0px); opacity: 0.35; }
+  50%       { transform: translateX(-50%) translateY(7px); opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollHint { animation: none; }
 }
 
 /* ── Wave ────────────────────────────────────── */
