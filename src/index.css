@@ -24,6 +24,8 @@ html, body {
   font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* plant cutouts overflow the right edge — clip the horizontal scroll */
+  overflow-x: clip;
 }
 
 body { font-size: 15px; line-height: 1.6; font-weight: 400; }

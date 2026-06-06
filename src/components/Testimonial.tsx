@@ -5,7 +5,7 @@ export default function Testimonial() {
     <section className={styles.testi}>
       <div className={styles.testiBg}>
         <img
-          src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1800&q=80&auto=format&fit=crop"
+          src="/testimonial-bg.png"
           alt=""
           loading="lazy"
         />
