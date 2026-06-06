@@ -1,0 +1,40 @@
+.water {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 110px;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.flip {
+  transform: scaleY(-1);
+  bottom: auto;
+  top: -1px;
+}
+
+/* Each layer is 200% wide (two wave tiles). translateX(-50%) slides exactly one
+   tile, so the loop is seamless. */
+.layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+}
+
+.l1 { animation: drift 13s linear infinite; }
+.l2 { animation: drift 9s linear infinite reverse; }
+.l3 { animation: drift 7s linear infinite; }
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .l1, .l2, .l3 { animation: none; }
+}

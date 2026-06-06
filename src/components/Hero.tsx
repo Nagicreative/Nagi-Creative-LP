@@ -1,4 +1,5 @@
 import ArrowIcon from './ArrowIcon'
+import WaterDivider from './WaterDivider'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -42,17 +43,7 @@ export default function Hero() {
         </svg>
       </div>
 
-      <svg
-        className={styles.wave}
-        viewBox="0 0 1440 96"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M0,52 C200,98 420,8 720,42 C1000,72 1240,98 1440,48 L1440,96 L0,96 Z"
-          fill="var(--bg)"
-        />
-      </svg>
+      <WaterDivider fill="var(--bg)" />
     </section>
   )
 }
