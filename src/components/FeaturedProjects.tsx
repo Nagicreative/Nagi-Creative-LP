@@ -39,16 +39,15 @@ export default function FeaturedProjects() {
     <section className={styles.sec} id="work">
       <div className={`wrap ${styles.wrapInner}`}>
         <div className={styles.secLabel} data-reveal><span className="cap">Featured projects</span></div>
-        <div className={styles.workGrid}>
-          {projects.map((p, i) => (
+        <div className={styles.workGrid} data-work-grid>
+          {projects.map((p) => (
             <a
               key={p.name}
               className={`${styles.workCard} ${p.lifted ? styles.lifted : ''}`}
               href={p.href}
               target={p.external ? '_blank' : undefined}
               rel={p.external ? 'noopener noreferrer' : undefined}
-              data-reveal
-              style={{ transitionDelay: `${i * 0.13}s` }}
+              data-work-card
             >
               <div className={styles.photo}>
                 <img src={p.img} alt={p.alt} loading="lazy" />

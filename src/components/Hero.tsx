@@ -4,7 +4,7 @@ import styles from './Hero.module.css'
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <video className={styles.heroBg} autoPlay muted loop playsInline preload="auto">
+      <video className={styles.heroBg} data-hero-bg autoPlay muted loop playsInline preload="auto">
         <source src="/hero-video.mp4" type="video/mp4" />
         <img src="/hero-section.png" alt="" />
       </video>
@@ -12,7 +12,7 @@ export default function Hero() {
 
       <div className={`wrap ${styles.wrap}`}>
         <div className={styles.heroCopy}>
-          <h1 className={styles.h1}>
+          <h1 className={styles.h1} data-hero-title>
             We tune the feeling<br />of your space—<br />into a world
           </h1>
           <span className={styles.scriptline}>worth choosing.</span>
