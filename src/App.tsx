@@ -10,8 +10,10 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import useScrollReveal from './hooks/useScrollReveal'
 import useMotion from './hooks/useMotion'
+import useSmoothScroll from './hooks/useSmoothScroll'
 
 export default function App() {
+  useSmoothScroll()
   useScrollReveal()
   useMotion()
 
