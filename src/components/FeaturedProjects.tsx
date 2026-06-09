@@ -24,13 +24,13 @@ const projects = [
     lifted: true,
   },
   {
-    href: '#',
-    img: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=900&q=80&auto=format&fit=crop',
-    alt: 'Beachfront bedroom',
-    name: 'The Cove Stay',
-    meta: 'Beachfront Stay · Palm Beach',
+    href: 'https://ember-vine-wine-bar.netlify.app',
+    external: true,
+    img: '/ember-vine.jpg',
+    alt: 'Ember & Vine — candlelit laneway wine bar landing page, Burleigh Heads',
+    name: 'Ember & Vine',
+    meta: 'Wine Bar · Burleigh Heads',
     lifted: false,
-    external: false,
   },
 ]
 
