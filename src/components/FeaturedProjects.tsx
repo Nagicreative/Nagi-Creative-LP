@@ -24,7 +24,7 @@ const projects = [
     lifted: true,
   },
   {
-    href: 'https://ember-vine-wine-bar.netlify.app',
+    href: 'https://ember-and-vine.netlify.app',
     external: true,
     img: '/ember-vine.jpg',
     alt: 'Ember & Vine — candlelit laneway wine bar landing page, Burleigh Heads',
