@@ -1,85 +1,68 @@
+import ArrowIcon from './ArrowIcon'
 import styles from './Services.module.css'
 
 const services = [
   {
-    icon: (
-      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="6" y="10" width="32" height="20" rx="2" />
-        <path d="M14 34h16M22 30v4" />
-        <path d="M11 15h22M11 19h14" />
-      </svg>
-    ),
     title: 'Website design',
     desc: 'Custom, atmosphere-led websites with a clean, premium look that feels unmistakably yours.',
+    note: 'The core of every project',
   },
   {
-    icon: (
-      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M10 34l4-1 16-16-3-3-16 16-1 4z" />
-        <path d="M27 14l3 3" />
-        <path d="M9 38h22" />
-      </svg>
-    ),
+    title: 'Signature motion',
+    desc: 'Scroll-driven storytelling, considered reveals and micro-interactions that make a page feel alive without ever feeling busy.',
+    note: 'What you are feeling on this page',
+  },
+  {
     title: 'Copy & brand positioning',
     desc: 'Clear messaging that connects with your ideal guests and strengthens your brand.',
+    note: 'Written with you, in your voice',
   },
   {
-    icon: (
-      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="10" y="8" width="24" height="28" rx="2" />
-        <path d="M16 16h12M16 21h12M16 26h8" />
-        <circle cx="31" cy="31" r="5" />
-        <path d="M34.5 34.5l3 3" />
-      </svg>
-    ),
     title: 'Booking flow optimisation',
     desc: 'Seamless booking journeys that increase direct bookings and reduce friction.',
+    note: 'Fewer taps between look and book',
   },
   {
-    icon: (
-      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="8" y="12" width="28" height="20" rx="2" />
-        <circle cx="22" cy="22" r="6" />
-        <circle cx="22" cy="22" r="2.5" fill="currentColor" stroke="none" />
-        <circle cx="30" cy="14" r="2" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-    title: 'Photography direction',
-    desc: 'Guiding imagery that captures your space, story and guest experience.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="20" cy="20" r="10" />
-        <path d="M28 28l7 7" />
-      </svg>
-    ),
     title: 'SEO foundations',
-    desc: 'Built-in SEO best practices to help your hotel get found on Google.',
+    desc: 'Built-in best practices so guests searching the Gold Coast actually find you.',
+    note: 'Plus Google Business Profile',
   },
 ]
 
+/**
+ * "What we tune": editorial index rows. Each row reveals with a drawn
+ * hairline; hovering sends a slow sheen of light across, like sun on water.
+ */
 export default function Services() {
   return (
-    <section className={styles.sec} id="services">
+    <section className={styles.sec} id="services" data-theme="day" data-sea="settling">
       <div className="wrap">
-        <div className={styles.secLabel} data-reveal><span className="cap">What we do</span></div>
-        <div className={styles.servicesGrid}>
+        <div className={styles.head} data-reveal>
+          <span className="cap">What we do</span>
+          <h2 className={styles.h2}>
+            We tune every layer<br />of the <span className="script">atmosphere.</span>
+          </h2>
+        </div>
+
+        <div className={styles.rows}>
           {services.map((svc, i) => (
-            <div
-              key={svc.title}
-              className={styles.svc}
-              data-reveal
-              style={{ transitionDelay: `${i * 80}ms` }}
-            >
-              <div className={styles.ico}>{svc.icon}</div>
-              <h4 className={styles.svcTitle}>
-                {svc.title}
-                <span className={styles.ul} />
-              </h4>
-              <p className={styles.svcDesc}>{svc.desc}</p>
+            <div key={svc.title} className={styles.row} data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
+              <span className={styles.ix}>[{String(i + 1).padStart(2, '0')}]</span>
+              <h3 className={styles.title}>{svc.title}</h3>
+              <div className={styles.body}>
+                <p className={styles.desc}>{svc.desc}</p>
+                <p className={styles.note}>{svc.note}</p>
+              </div>
+              <span className={styles.sheen} aria-hidden />
             </div>
           ))}
+        </div>
+
+        <div className={styles.foot} data-reveal>
+          <a className="btnLink" href="#pricing">
+            See what it costs
+            <span className="icoArrow"><ArrowIcon /></span>
+          </a>
         </div>
       </div>
     </section>

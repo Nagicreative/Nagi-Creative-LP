@@ -1,10 +1,16 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ArrowIcon from './ArrowIcon'
 import styles from './Pricing.module.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const plans = [
   {
     name: 'Starter',
-    price: '$1,800',
+    price: 1800,
+    suffix: '',
     unit: 'AUD',
     tagline: 'One beautiful page to put you on the map.',
     features: [
@@ -13,13 +19,14 @@ const plans = [
       'Contact form + Google Map',
       'SEO foundations (get found on Google)',
       '1 revision round',
-      'Launch in ~5–7 days',
+      'Launch in 5 to 7 days',
     ],
     featured: false,
   },
   {
     name: 'Studio',
-    price: '$3,200',
+    price: 3200,
+    suffix: '',
     unit: 'AUD',
     tagline: 'Our most-loved package for growing venues.',
     features: [
@@ -29,13 +36,14 @@ const plans = [
       'Copy & brand positioning',
       'Local SEO + Google Business Profile',
       '3 revision rounds',
-      'Launch in ~10–14 days',
+      'Launch in 10 to 14 days',
     ],
     featured: true,
   },
   {
     name: 'Premium',
-    price: '$5,500+',
+    price: 5500,
+    suffix: '+',
     unit: 'AUD',
     tagline: 'A full world, in two languages.',
     features: [
@@ -50,15 +58,45 @@ const plans = [
   },
 ]
 
+/**
+ * Night falls on pricing: dark cards, and the Studio plan sits in the
+ * lamp light. Prices count up as they surface.
+ */
 export default function Pricing() {
+  const secRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const sec = secRef.current
+    if (!sec) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const ctx = gsap.context(() => {
+      if (reduce) return
+      sec.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+        const target = Number(el.dataset.count)
+        const obj = { v: 0 }
+        gsap.to(obj, {
+          v: target,
+          duration: 1.4,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+          onUpdate: () => {
+            el.textContent = `$${Math.round(obj.v).toLocaleString('en-AU')}`
+          },
+        })
+      })
+    }, sec)
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className={styles.pricing} id="pricing">
+    <section ref={secRef} className={styles.pricing} id="pricing" data-theme="night" data-sea="glass">
       <div className="wrap">
         <div className={styles.head} data-reveal>
           <span className="cap">Investment</span>
           <h2 className={styles.h2}>
             Considered pricing for a<br />
-            <span className={styles.scriptline}>world worth choosing.</span>
+            <span className={`script ${styles.scriptline}`}>world worth choosing.</span>
           </h2>
         </div>
 
@@ -75,7 +113,10 @@ export default function Pricing() {
               <p className={styles.planTagline}>{plan.tagline}</p>
               <div className={styles.priceRow}>
                 <span className={styles.from}>from</span>
-                <span className={styles.price}>{plan.price}</span>
+                <span className={styles.price} data-count={plan.price}>
+                  ${plan.price.toLocaleString('en-AU')}
+                </span>
+                {plan.suffix && <span className={styles.suffix}>{plan.suffix}</span>}
                 <span className={styles.unit}>{plan.unit}</span>
               </div>
               <ul className={styles.features}>
@@ -91,7 +132,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <a
-                className={`btn ${plan.featured ? 'btnPrimary' : styles.btnGhost}`}
+                className={`btn ${plan.featured ? 'btnPrimary' : `btnGhost ${styles.ghost}`}`}
                 href="#contact"
               >
                 Start your project
@@ -102,9 +143,8 @@ export default function Pricing() {
         </div>
 
         <p className={styles.fine} data-reveal>
-          Every project: 50% deposit to begin, 50% on launch. Add-ons available —
-          redesign / refresh from $1,800, local SEO from $600, and a care plan from
-          $150/mo. Not sure which fits? We&apos;ll guide you on a quick call.
+          All prices in AUD. Half on booking, half on launch. Care plan from $150 a month
+          covers hosting, security and small updates.
         </p>
       </div>
     </section>

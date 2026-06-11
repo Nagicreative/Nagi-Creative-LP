@@ -48,7 +48,7 @@ export default function Contact() {
 
   if (status === 'success') {
     return (
-      <section className={styles.contact} id="contact">
+      <section className={styles.contact} id="contact" data-theme="night" data-sea="nagi">
         <div className="wrap">
           <div className={styles.thanks}>
             <div className={styles.thanksMark} aria-hidden>
@@ -58,7 +58,7 @@ export default function Contact() {
             </div>
             <span className="cap">Message sent</span>
             <h2 className={styles.thanksTitle}>
-              Thank you—it&apos;s on its way! <span className={styles.scriptline}>🌿</span>
+              Thank you, it&apos;s on its way. <span className={styles.scriptline}>🌿</span>
             </h2>
             <p className={styles.thanksLede}>
               Your message just landed in our inbox. We&apos;ll reply within one business
@@ -74,16 +74,18 @@ export default function Contact() {
   }
 
   return (
-    <section className={styles.contact} id="contact">
+    <section className={styles.contact} id="contact" data-theme="night" data-sea="nagi">
       <div className={`wrap ${styles.inner}`}>
-        <div className={styles.intro} data-reveal>
+        {/* no data-reveal here: this subtree re-mounts after a successful send,
+            and re-mounted nodes would stay hidden (the reveal observer runs once) */}
+        <div className={styles.intro}>
           <span className="cap">Get in touch</span>
           <h2 className={styles.h2}>
             Ready to turn your atmosphere<br />
             into a <span className={styles.scriptline}>world worth choosing?</span>
           </h2>
           <p className={styles.lede}>
-            Tell us a little about your venue. We&apos;ll reply within one business day—
+            Tell us a little about your venue. We&apos;ll reply within one business day,
             often with a few first ideas already in mind.
           </p>
           <a className={styles.altMail} href="mailto:hello@nagicreative.com">
@@ -91,7 +93,7 @@ export default function Contact() {
           </a>
         </div>
 
-        <form className={styles.form} onSubmit={handleSubmit} data-reveal>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.row}>
             <label className={styles.field}>
               <span>Name</span>

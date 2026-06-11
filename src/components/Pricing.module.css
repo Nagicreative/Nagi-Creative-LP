@@ -1,96 +1,84 @@
-.pricing {
-  padding: 24px 0 130px;
-  position: relative;
-}
+.pricing { padding: 140px 0 120px; }
 
-.head {
-  text-align: center;
-  margin-bottom: 64px;
-}
+.head { text-align: center; margin-bottom: 70px; }
 
 .h2 {
-  font-family: 'Cormorant Garamond', serif;
+  margin: 14px 0 0;
+  font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(30px, 3.6vw, 46px);
-  line-height: 1.12;
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.14;
   color: var(--ink);
-  margin: 14px 0 24px;
 }
-
 .scriptline {
-  font-family: 'Pinyon Script', cursive;
-  color: var(--script);
-  font-size: clamp(40px, 4.6vw, 64px);
-  line-height: 1.1;
+  font-size: 1.14em;
+  /* keep descenders unclipped */
+  padding-bottom: .16em;
+  margin-bottom: -.16em;
+  display: inline-block;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-@media (min-width: 880px) {
-  .grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
 }
 
 .card {
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  border-radius: 16px;
-  padding: 38px 32px 36px;
   position: relative;
-  box-shadow: 0 24px 50px -34px rgba(33, 54, 74, 0.22);
-  transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease,
-              opacity .8s ease;
   display: flex;
   flex-direction: column;
+  padding: 38px 32px 34px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: 16px;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease,
+              background-color 1.1s ease, border-color 1.1s ease;
 }
-
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 40px 70px -34px rgba(33, 54, 74, 0.32);
+  box-shadow: 0 36px 70px -40px rgba(0, 0, 0, .7);
 }
 
+/* the lamp light */
 .featured {
-  background: var(--navy);
-  border-color: var(--navy);
-}
-
-@media (min-width: 880px) {
-  .featured { margin-top: -16px; margin-bottom: -16px; }
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  background:
+    radial-gradient(120% 90% at 50% -10%, color-mix(in srgb, var(--gold) 16%, transparent) 0%, transparent 55%),
+    var(--card);
+  box-shadow: 0 30px 80px -40px color-mix(in srgb, var(--gold) 38%, transparent);
 }
 
 .badge {
   position: absolute;
-  top: -12px;
+  top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--navy);
-  background: var(--accent);
+  padding: 7px 16px;
   border-radius: 999px;
-  padding: 6px 16px;
+  background: var(--gold);
+  color: #16202F;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .24em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .planName {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: 26px;
-  margin: 0 0 6px;
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 28px;
   color: var(--ink);
 }
 
 .planTagline {
-  font-size: 13.5px;
-  line-height: 1.55;
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--ink-2);
-  margin: 0 0 24px;
   min-height: 42px;
 }
 
@@ -98,86 +86,80 @@
   display: flex;
   align-items: baseline;
   gap: 8px;
-  padding-bottom: 26px;
-  margin-bottom: 26px;
+  margin: 22px 0 6px;
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--hair);
 }
-
 .from {
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--muted);
 }
-
 .price {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: 42px;
+  font-family: var(--serif);
+  font-size: 44px;
   line-height: 1;
   color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
-
+.suffix {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  margin-left: -6px;
+}
 .unit {
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: .14em;
   color: var(--muted);
 }
 
 .features {
   list-style: none;
-  margin: 0 0 32px;
+  margin: 18px 0 30px;
   padding: 0;
+  display: grid;
+  gap: 11px;
   flex: 1;
 }
-
 .features li {
   display: flex;
   align-items: flex-start;
   gap: 11px;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13.5px;
+  line-height: 1.55;
   color: var(--ink-2);
-  padding: 8px 0;
 }
-
 .check {
-  flex-shrink: 0;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
   margin-top: 1px;
-  color: var(--accent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--gold) 20%, transparent);
+  color: var(--gold);
 }
+.check svg { width: 10px; height: 10px; }
 
-.check svg { width: 16px; height: 16px; }
-
-.btnGhost {
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--rule);
-  align-self: flex-start;
-}
-
-.btnGhost:hover {
-  background: var(--navy);
-  color: var(--paper);
-  border-color: var(--navy);
-  transform: translateY(-1px);
-}
-
-/* featured (dark) card: invert text colours */
-.featured .planName,
-.featured .price { color: var(--paper); }
-.featured .planTagline,
-.featured .features li { color: rgba(245, 237, 222, 0.82); }
-.featured .from,
-.featured .unit { color: rgba(245, 237, 222, 0.6); }
-.featured .priceRow { border-bottom-color: rgba(245, 237, 222, 0.18); }
-.featured .check { color: var(--accent); }
+/* .btn is a global class, so it must be escaped or the module hashes it
+   and the rule never matches (the Studio button sat left because of this) */
+.ghost { justify-content: center; }
+.card :global(.btn) { width: 100%; justify-content: center; }
 
 .fine {
+  margin: 44px auto 0;
+  max-width: 520px;
   text-align: center;
-  max-width: 64ch;
-  margin: 52px auto 0;
-  font-size: 13.5px;
+  font-size: 12.5px;
   line-height: 1.7;
-  color: var(--ink-2);
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .pricing { padding: 110px 0 90px; }
+  .grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .planTagline { min-height: 0; }
 }

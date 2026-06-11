@@ -1,22 +1,82 @@
-/* ─── design tokens ─── */
+/* ───────────────────────────────────────────────────────────────
+   Nagi Creative — 凪 Still Water
+   The page travels from golden hour to night. <body data-theme>
+   is set by the orchestrator; every component colors itself with
+   these variables so the whole site crossfades as the day ends.
+   ─────────────────────────────────────────────────────────────── */
+
 :root {
-  --bg:       #EFE6D6;
-  --bg-2:     #E6DBC6;
-  --paper:    #F5EDDE;
-  --ink:      #1F2A37;
-  --ink-2:    #4A5462;
-  --muted:    #8E8474;
-  --rule:     rgba(31,42,55,.14);
-  --hair:     rgba(31,42,55,.08);
-  --navy:     #21364A;
-  --navy-hov: #2E4866;
-  --accent:   #B89464;
-  --script:   #21364A;
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'Jost', ui-sans-serif, system-ui, sans-serif;
+  --hand:   'Pinyon Script', cursive;
+  --jp:     'Noto Serif JP', serif;
+
+  --gold:      #BE9A66;
+  --gold-soft: #D8BC8E;
+
+  /* dawn (default, hero) */
+  --bg:        #F2E9DA;
+  --ink:       #22303F;
+  --ink-2:     #4E5765;
+  --muted:     #8E8474;
+  --rule:      rgba(34, 48, 63, .16);
+  --hair:      rgba(34, 48, 63, .08);
+  --card:      #F8F1E3;
+  --card-edge: rgba(34, 48, 63, .10);
+  --script-ink:#21364A;
+  --btn-bg:    #21364A;
+  --btn-bg-hov:#2E4866;
+  --btn-ink:   #F5EDDE;
+  --navy:      #21364A;
+}
+
+body[data-theme='day'] {
+  --bg:        #F6F0E2;
+  --card:      #FBF5E8;
+}
+
+body[data-theme='dusk'] {
+  --bg:        #EADAC4;
+  --ink:       #2D3342;
+  --ink-2:     #555A68;
+  --muted:     #79683F;
+  --card:      #F4E8D2;
+  --card-edge: rgba(45, 51, 66, .12);
+}
+
+body[data-theme='evening'] {
+  --bg:        #31405A;
+  --ink:       #F0E7D5;
+  --ink-2:     #C2C6D2;
+  --muted:     #A6AEC1;
+  --rule:      rgba(240, 231, 213, .22);
+  --hair:      rgba(240, 231, 213, .10);
+  --card:      #3A4B6A;
+  --card-edge: rgba(240, 231, 213, .14);
+  --script-ink:#D8BC8E;
+  --btn-bg:    #C9A36A;
+  --btn-bg-hov:#D8B47C;
+  --btn-ink:   #1B2536;
+}
+
+body[data-theme='night'] {
+  --bg:        #121A2A;
+  --ink:       #EDE3CF;
+  --ink-2:     #B4B9C7;
+  --muted:     #8E97AD;
+  --rule:      rgba(237, 227, 207, .20);
+  --hair:      rgba(237, 227, 207, .09);
+  --card:      #1A2438;
+  --card-edge: rgba(237, 227, 207, .13);
+  --script-ink:#D8BC8E;
+  --btn-bg:    #C9A36A;
+  --btn-bg-hov:#D8B47C;
+  --btn-ink:   #16202F;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* ─── Lenis smooth scroll (Direction A foundation) ─── */
+/* ─── Lenis smooth scroll ─── */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -28,28 +88,54 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* plant cutouts overflow the right edge — clip the horizontal scroll */
   overflow-x: clip;
 }
 
-body { font-size: 15px; line-height: 1.6; font-weight: 400; }
+body {
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 400;
+  transition: background-color 1.1s ease, color 1.1s ease;
+}
+
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-::selection { background: var(--navy); color: var(--paper); }
+::selection { background: var(--gold); color: #16202F; }
 
 /* ─── typography utilities ─── */
-.serif  { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
-.script { font-family: 'Pinyon Script', cursive; font-weight: 400; color: var(--script); }
-.cap    {
-  font-family: 'Jost', sans-serif;
+.serif  { font-family: var(--serif); font-weight: 500; }
+.script {
+  font-family: var(--hand);
+  font-weight: 400;
+  color: var(--script-ink);
+  transition: color 1.1s ease;
+}
+.cap {
+  font-family: var(--sans);
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--ink-2);
   font-weight: 400;
+  transition: color 1.1s ease;
+}
+.jp {
+  font-family: var(--jp);
+  font-weight: 400;
+}
+
+/* vertical Japanese caption rail */
+.jpRail {
+  font-family: var(--jp);
+  writing-mode: vertical-rl;
+  font-size: 12px;
+  letter-spacing: .42em;
+  color: var(--muted);
+  transition: color 1.1s ease;
+  user-select: none;
 }
 
 /* ─── layout ─── */
@@ -61,12 +147,12 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 26px;
+  padding: 15px 28px;
   border-radius: 999px;
-  font-family: 'Jost', sans-serif;
+  font-family: var(--sans);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: .22em;
   text-transform: uppercase;
   cursor: pointer;
   border: 1px solid transparent;
@@ -75,25 +161,39 @@ a { color: inherit; text-decoration: none; }
               border-color .3s ease, box-shadow .3s ease;
 }
 .btnPrimary {
-  background: var(--navy);
-  color: var(--paper);
-  box-shadow: 0 8px 24px -10px rgba(33,54,74,.5);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  box-shadow: 0 10px 28px -12px rgba(10, 16, 28, .55);
 }
 .btnPrimary:hover {
-  background: var(--navy-hov);
+  background: var(--btn-bg-hov);
   transform: translateY(-1px);
-  box-shadow: 0 14px 30px -10px rgba(33,54,74,.55);
+  box-shadow: 0 16px 34px -12px rgba(10, 16, 28, .6);
 }
-.icoArrow {
+.btnGhost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+.btnGhost:hover { border-color: var(--ink-2); transform: translateY(-1px); }
+.btnLink {
   display: inline-flex;
-  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 1.1s ease;
 }
+.icoArrow { display: inline-flex; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
 .btn:hover .icoArrow,
 .btnLink:hover .icoArrow { transform: translateX(4px); }
 
-/* ─── scroll reveal ───
-   Hidden only once JS marks the page ready, so the site stays fully
-   visible if JS is disabled or fails. */
+/* ─── scroll reveal (hidden only once JS marks the page ready) ─── */
 .reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
@@ -104,23 +204,34 @@ a { color: inherit; text-decoration: none; }
   opacity: 1;
   transform: none;
 }
+
+/* ─── the still-water touch: one calm ring per click ─── */
+.nagi-ripple {
+  position: fixed;
+  width: 88px;
+  height: 88px;
+  margin: 0;
+  border: 1px solid currentColor;
+  color: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 240;
+  transform: translate(-50%, -50%) scale(.05);
+  opacity: .55;
+  animation: nagiRipple .9s cubic-bezier(.2, .7, .2, 1) forwards;
+}
+@keyframes nagiRipple {
+  to { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* ─── reduced motion: everything readable, nothing required ─── */
 @media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
   .reveal-ready [data-reveal],
   .reveal-ready [data-reveal].reveal-in {
     opacity: 1;
     transform: none;
     transition: none;
   }
-}
-.btnLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  cursor: pointer;
+  .nagi-ripple { display: none; }
 }

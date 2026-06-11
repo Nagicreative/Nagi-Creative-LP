@@ -1,184 +1,162 @@
-.contact {
-  padding: 24px 0 130px;
-}
+.contact { padding: 60px 0 150px; }
 
 .inner {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(44px, 6vw, 100px);
   align-items: start;
 }
 
-@media (min-width: 880px) {
-  .inner { grid-template-columns: 1fr 1fr; gap: 80px; }
-}
+.intro { padding-top: 10px; }
 
-/* ── intro ── */
 .h2 {
-  font-family: 'Cormorant Garamond', serif;
+  margin: 14px 0 0;
+  font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(28px, 3.2vw, 44px);
-  line-height: 1.14;
+  font-size: clamp(32px, 3.8vw, 52px);
+  line-height: 1.16;
   color: var(--ink);
-  margin: 14px 0 22px;
 }
-
 .scriptline {
-  font-family: 'Pinyon Script', cursive;
-  color: var(--script);
-  font-size: clamp(34px, 4vw, 54px);
-  line-height: 1.1;
+  font-family: var(--hand);
+  font-weight: 400;
+  color: var(--script-ink);
+  font-size: 1.14em;
+  display: inline-block;
+  /* keep descenders unclipped */
+  padding-bottom: .16em;
+  margin-bottom: -.16em;
 }
 
 .lede {
+  margin: 22px 0 0;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--ink-2);
-  max-width: 40ch;
-  margin: 0 0 24px;
+  max-width: 420px;
 }
 
 .altMail {
   display: inline-block;
-  font-size: 13.5px;
-  color: var(--ink-2);
-  border-bottom: 1px solid var(--rule);
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hair);
   padding-bottom: 2px;
-  transition: color .25s ease, border-color .25s ease;
+  transition: color .3s ease, border-color .3s ease;
 }
-.altMail:hover { color: var(--ink); border-color: var(--ink); }
+.altMail:hover { color: var(--ink); border-color: var(--gold); }
 
-/* ── form ── */
-.form { display: flex; flex-direction: column; gap: 18px; }
+/* the form floats like a lit window on the night sea */
+.form {
+  display: grid;
+  gap: 22px;
+  padding: 40px 38px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: 16px;
+  box-shadow: 0 50px 110px -60px rgba(0, 0, 0, .85);
+}
 
 .row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-@media (min-width: 520px) {
-  .row { grid-template-columns: 1fr 1fr; }
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
 }
 
-.field { display: flex; flex-direction: column; gap: 8px; }
-
-.field > span {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+.field { display: grid; gap: 8px; }
+.field span {
+  font-size: 10.5px;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--muted);
 }
-
 .field input,
 .field textarea {
-  font-family: 'Jost', sans-serif;
-  font-size: 15px;
-  color: var(--ink);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 13px 15px;
   width: 100%;
-  transition: border-color .25s ease, box-shadow .25s ease;
+  padding: 12px 2px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  border-radius: 0;
+  transition: border-color .35s ease;
 }
-
-.field textarea { resize: vertical; min-height: 110px; }
-
+.field textarea { resize: vertical; min-height: 96px; }
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(33, 54, 74, 0.1);
+  border-bottom-color: var(--gold);
+  /* a second hairline doubles the focus cue without shifting layout */
+  box-shadow: 0 1px 0 0 var(--gold);
 }
-
-.form button { align-self: flex-start; margin-top: 6px; }
-.form button:disabled { opacity: 0.6; cursor: default; }
 
 .honeypot {
   position: absolute;
   left: -9999px;
-  width: 1px;
-  height: 1px;
   opacity: 0;
+  pointer-events: none;
 }
 
 .errorMsg {
-  font-size: 13px;
-  color: #9a3b34;
   margin: 0;
+  font-size: 13px;
+  color: #E08A7A;
 }
 
-/* ── success ── */
+/* thanks state */
 .thanks {
-  max-width: 620px;
+  max-width: 560px;
   margin: 0 auto;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  border-radius: 20px;
-  padding: 64px 40px;
   text-align: center;
-  box-shadow: 0 30px 60px -34px rgba(33, 54, 74, 0.26);
-  animation: thanksRise .6s cubic-bezier(.2,.7,.2,1) both;
+  padding: 40px 0;
 }
-
-.thanks :global(.cap) { display: block; margin-bottom: 14px; }
-
 .thanksMark {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 24px;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 26px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--paper);
-  background: var(--navy);
-  box-shadow: 0 14px 30px -10px rgba(33, 54, 74, 0.5);
-  animation: markPop .5s cubic-bezier(.2,.9,.3,1.4) .15s both;
+  background: color-mix(in srgb, var(--gold) 22%, transparent);
+  color: var(--gold);
 }
-.thanksMark svg { width: 34px; height: 34px; }
-
+.thanksMark svg { width: 26px; height: 26px; }
 .thanksTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(28px, 3.4vw, 40px);
-  line-height: 1.15;
+  margin: 16px 0 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 44px);
   color: var(--ink);
-  margin: 0 0 14px;
 }
-
 .thanksLede {
+  margin: 18px 0 0;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--ink-2);
-  max-width: 42ch;
-  margin: 0 auto 28px;
 }
-
 .again {
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+  margin-top: 30px;
   background: none;
   border: none;
-  border-bottom: 1px solid var(--rule);
-  padding: 0 0 3px;
   cursor: pointer;
-  transition: color .25s ease, border-color .25s ease;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hair);
+  padding: 0 0 3px;
+  transition: color .3s ease, border-color .3s ease;
 }
-.again:hover { color: var(--ink); border-color: var(--ink); }
+.again:hover { color: var(--ink); border-color: var(--gold); }
 
-@keyframes thanksRise {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes markPop {
-  from { opacity: 0; transform: scale(0.4); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .thanks, .thanksMark { animation: none; }
+@media (max-width: 900px) {
+  .contact { padding: 30px 0 110px; }
+  .inner { grid-template-columns: 1fr; }
+  .form { padding: 30px 24px; }
+  .row { grid-template-columns: 1fr; }
 }
